@@ -1,6 +1,5 @@
 <?php namespace Acoustep\ComponentGenerator\Commands;
 
-use Config;
 use Acoustep\ComponentGenerator\Generators\ComponentGenerator;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
@@ -23,15 +22,17 @@ class ComponentGeneratorCommand extends Command {
 	protected $description = 'Generate a HTML component from a web framework such as Twitter Bootstrap or Zurb Foundation.';
 
 	protected $generator;
+	protected $config;
 	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct(ComponentGenerator $generator)
+	public function __construct(ComponentGenerator $generator, $config)
 	{
 		parent::__construct();
 		$this->generator = $generator;
+		$this->config = $config;
 	}
 
 	/**
@@ -52,8 +53,8 @@ class ComponentGeneratorCommand extends Command {
 	public function getPath()
 	{
 		return $this->option('path') . '/' .
-			Config::get('component-generator::config.option') .
-			$this->argument('name') . Config::get('component-generator::config.postfix');
+			$this->config->get('component-generator::config.prefix') .
+			$this->argument('name') . $this->config->get('component-generator::config.postfix');
 	}
 
 	/**

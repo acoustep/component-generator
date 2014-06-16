@@ -22,6 +22,7 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('acoustep/component-generator');
+
 	}
 
 	/**
@@ -41,8 +42,8 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 	{
 		$this->app['generate.component'] = $this->app->share(function($app)
 		{
-			$generator = new ComponentGenerator($app['files']);
-			return new ComponentGeneratorCommand($generator);
+			$generator = new ComponentGenerator($app['files'], $app['config']);
+			return new ComponentGeneratorCommand($generator, $app['config']);
 		});
 	}
 

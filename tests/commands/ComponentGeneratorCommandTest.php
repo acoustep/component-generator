@@ -1,12 +1,22 @@
 <?php
 
-use Config;
 use Acoustep\ComponentGenerator\Commands\ComponentGeneratorCommand;
 use Acoustep\ComponentGenerator\Generators\ComponentGenerator;
 use Symfony\Component\Console\Tester\CommandTester;
 use Mockery as m;
 
 class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$app = m::mock('AppMock');
+		$app->shouldReceive('instance')->once()->andReturn($app);
+
+		Illuminate\Support\Facades\Facade::setFacadeApplication($app);
+		Illuminate\Support\Facades\Config::swap($config = m::mock('ConfigMock'));
+
+	}
 	public function tearDown()
 	{
 		m::close();
@@ -21,7 +31,19 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 			->with('app/views/components/navbar.blade.php')
 			->andReturn(true);
 
-		$command = new ComponentGeneratorCommand($gen);
+		$config = m::mock('ConfigMock');
+
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.prefix')
+			->andReturn('');
+
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.postfix')
+			->andReturn('.blade.php');
+
+		$command = new ComponentGeneratorCommand($gen, $config);
 
 		$tester = new CommandTester($command);
 		$tester->execute(['name' => 'navbar']);
@@ -41,10 +63,21 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 			->with('app/views/components/navbar.blade.php') 
 			->andReturn(false);
 
-		$command = new ComponentGeneratorCommand($gen);
+		$config = m::mock('ConfigMock');
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.prefix')
+			->andReturn('');
+
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.postfix')
+			->andReturn('.blade.php');
+
+		$command = new ComponentGeneratorCommand($gen, $config);
 
 		$tester = new CommandTester($command);
-		$tester->execute(['name' => 'foo']);
+		$tester->execute(['name' => 'navbar']);
 
 		$this->assertEquals(
 			"Could not create app/views/components/navbar.blade.php\n",
