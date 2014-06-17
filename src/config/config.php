@@ -12,7 +12,7 @@ return [
 	 * To put them in the root of views leave empty.
 	 * To put them in subdirectories seperate by a forward slash.
 	 */
-	'target' => 'components',
+	'path' => 'app/views/components',
 	/*
 	 * Put a prefix on filenames. 
 	 * If you come from a Rails background and prefer to use an underscore to prefix partials then you can set that here.

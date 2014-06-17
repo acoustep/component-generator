@@ -30,9 +30,9 @@ class ComponentGeneratorCommand extends Command {
 	 */
 	public function __construct(ComponentGenerator $generator, $config)
 	{
+		$this->config = $config;
 		parent::__construct();
 		$this->generator = $generator;
-		$this->config = $config;
 	}
 
 	/**
@@ -81,11 +81,15 @@ class ComponentGeneratorCommand extends Command {
 	protected function getOptions()
 	{
 		return array(
-			array('path',
-			null,
-			InputOption::VALUE_OPTIONAL,
-			'Path to the view components directory.',
-		 	'app/views/components'),
+			array(
+				'path',
+				null,
+				InputOption::VALUE_OPTIONAL,
+				'Path to the view components directory.',
+				// \Config::get('component-generator::config.path')
+				// 'app/views/component'
+				$this->config->get('component-generator::config.path')
+			),
 		);
 	}
 

@@ -43,6 +43,11 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.postfix')
 			->andReturn('.blade.php');
 
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.path')
+			->andReturn('app/views/components');
+
 		$command = new ComponentGeneratorCommand($gen, $config);
 
 		$tester = new CommandTester($command);
@@ -74,6 +79,11 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.postfix')
 			->andReturn('.blade.php');
 
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.path')
+			->andReturn('app/views/components');
+
 		$command = new ComponentGeneratorCommand($gen, $config);
 
 		$tester = new CommandTester($command);
@@ -84,6 +94,44 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 			$tester->getDisplay()
 		);
 
+	}
+
+	public function testCommandLinePathOptionOverridesConfiguration()
+	{
+		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentGenerator');
+
+		$gen->shouldReceive('make')
+			->once()
+			->with('app/views/navbar.blade.php')
+			->andReturn(true);
+
+		$config = m::mock('ConfigMock');
+
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.prefix')
+			->andReturn('');
+
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.postfix')
+			->andReturn('.blade.php');
+
+		// Notice how the configuration is set to app/views/components where as app/views overrides it
+		$config
+			->shouldReceive('get')
+			->with('component-generator::config.path')
+			->andReturn('app/views/components');
+
+		$command = new ComponentGeneratorCommand($gen, $config);
+
+		$tester = new CommandTester($command);
+		$tester->execute(['name' => 'navbar', '--path' => 'app/views']);
+
+		$this->assertEquals(
+			"Created app/views/navbar.blade.php\n",
+			$tester->getDisplay()
+		);
 	}
 }
 
