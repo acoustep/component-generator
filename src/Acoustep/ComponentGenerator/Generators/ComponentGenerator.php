@@ -13,7 +13,11 @@ class ComponentGenerator {
 	}
 	public function make($path)
 	{ 
-		$name = basename($path, $this->config->get('component-generator::config.postfix'));
+		$name = basename(
+			$path, 
+			$this->config->get('component-generator::config.postfix'
+		));
+
 		$template = $this->getTemplate($name);
 
 		if( ! $this->file->exists($path))
@@ -23,8 +27,19 @@ class ComponentGenerator {
 
 	public function getTemplate($name)
 	{
-		$name = basename($name, $this->config->get('component-generator::config.postfix'));
-		$template = $this->file->get(__DIR__ . '/../../../views/' . $this->config->get('component-generator::config.framework') . '/' . $name . '.txt');
+		$name = basename(
+			$name, 
+			$this->config->get('component-generator::config.postfix'
+		));
+
+		$template = $this->file->get(
+			__DIR__ . 
+			'/../../../views/' . 
+			$this->config->get('component-generator::config.framework') . 
+			'/' . 
+			$name . 
+			'.txt'
+		);
 
 		return str_replace('{{name}}', $name, $template);
 	}

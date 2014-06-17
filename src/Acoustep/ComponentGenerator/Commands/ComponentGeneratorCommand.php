@@ -52,9 +52,11 @@ class ComponentGeneratorCommand extends Command {
 
 	public function getPath()
 	{
-		return $this->option('path') . '/' .
+		return $this->option('path') . 
+			'/' .
 			$this->config->get('component-generator::config.prefix') .
-			$this->argument('name') . $this->config->get('component-generator::config.postfix');
+			$this->argument('name') . 
+			$this->config->get('component-generator::config.postfix');
 	}
 
 	/**
