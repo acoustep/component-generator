@@ -20,6 +20,13 @@ class ComponentGenerator {
 
 		$template = $this->getTemplate($name);
 
+		$path_parts = pathinfo($path);
+
+		$path = $path_parts['dirname'] .
+			'/' .
+			$this->config->get('component-generator::config.prefix') .
+			$path_parts['basename'];
+
 		if( ! $this->file->exists($path))
 			return $this->file->put($path, $template);
 		return false;

@@ -28,9 +28,44 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.framework')
 			->andReturn('bootstrap3');
 
+		$config->shouldReceive('get')
+			->with('component-generator::config.prefix')
+			->andReturn('');
+
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/navbar.blade.php');
 
+	}
+
+	public function testPrefixConfigurationAltersFilePrefix()
+	{
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+
+		$file->shouldReceive('put')
+			->once()
+			->with(
+				'app/views/components/_navbar.blade.php', 
+				file_get_contents(__DIR__.'/stubs/navbar.txt'
+			));
+
+		$config = m::mock('ConfigMock');
+
+		$config->shouldReceive('get')
+			->twice()
+			->with('component-generator::config.postfix')
+			->andReturn('.blade.php');
+
+		$config->shouldReceive('get')
+			->with('component-generator::config.framework')
+			->andReturn('bootstrap3');
+
+		$config->shouldReceive('get')
+			->once()
+			->with('component-generator::config.prefix')
+			->andReturn('_');
+
+		$generator = new ComponentGenerator($file, $config);
+		$generator->make('app/views/components/navbar.blade.php');
 	}
 
 	public function testPostfixConfigurationAltersFilePostfix()
@@ -54,6 +89,11 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 		$config->shouldReceive('get')
 			->with('component-generator::config.framework')
 			->andReturn('bootstrap3');
+
+		$config->shouldReceive('get')
+			->once()
+			->with('component-generator::config.prefix')
+			->andReturn('');
 
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/navbar.php');
@@ -81,6 +121,11 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.framework')
 			->andReturn('foundation5');
 
+		$config->shouldReceive('get')
+			->once()
+			->with('component-generator::config.prefix')
+			->andReturn('');
+
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/topbar.blade.php');
 
@@ -104,6 +149,11 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 		$config->shouldReceive('get')
 			->with('component-generator::config.framework')
 			->andReturn('bootstrap3');
+
+		$config->shouldReceive('get')
+			->once()
+			->with('component-generator::config.prefix')
+			->andReturn('');
 
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/navbar.blade.php');
