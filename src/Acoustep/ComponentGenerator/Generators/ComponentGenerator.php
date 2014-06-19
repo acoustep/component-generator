@@ -48,7 +48,12 @@ class ComponentGenerator {
 			'.txt'
 		);
 
-		return str_replace('{{name}}', $name, $template);
+		if($this->config->get('component-generator::config.syntax') === 'php') {
+			$template = str_replace('{{ ', '<?php echo ', $template);
+			return str_replace(' }}', '; ?>', $template);
+		}
+
+		return $template;
 	}
 }
 

@@ -32,6 +32,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.prefix')
 			->andReturn('');
 
+		$config->shouldReceive('get')
+			->with('component-generator::config.syntax')
+			->andReturn('blade');
+
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/navbar.blade.php');
 
@@ -64,6 +68,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.prefix')
 			->andReturn('_');
 
+		$config->shouldReceive('get')
+			->with('component-generator::config.syntax')
+			->andReturn('blade');
+
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/navbar.blade.php');
 	}
@@ -94,6 +102,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->once()
 			->with('component-generator::config.prefix')
 			->andReturn('');
+
+		$config->shouldReceive('get')
+			->with('component-generator::config.syntax')
+			->andReturn('blade');
 
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/navbar.php');
@@ -126,6 +138,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.prefix')
 			->andReturn('');
 
+		$config->shouldReceive('get')
+			->with('component-generator::config.syntax')
+			->andReturn('blade');
+
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/components/topbar.blade.php');
 
@@ -155,8 +171,46 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.prefix')
 			->andReturn('');
 
+		$config->shouldReceive('get')
+			->with('component-generator::config.syntax')
+			->andReturn('blade');
+
 		$generator = new ComponentGenerator($file, $config);
 		$generator->make('app/views/navbar.blade.php');
+
+	}
+
+	public function testCanSyntaxToPHP()
+{
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+
+		$file->shouldReceive('put')
+			->once()
+			->with('app/views/navbar.php', file_get_contents(__DIR__.'/stubs/navbar-php.txt'));
+
+		$config = m::mock('ConfigMock');
+
+		$config->shouldReceive('get')
+			->twice()
+			->with('component-generator::config.postfix')
+			->andReturn('.php');
+
+		$config->shouldReceive('get')
+			->with('component-generator::config.framework')
+			->andReturn('bootstrap3');
+
+		$config->shouldReceive('get')
+			->once()
+			->with('component-generator::config.prefix')
+			->andReturn('');
+
+		$config->shouldReceive('get')
+			->with('component-generator::config.syntax')
+			->once()
+			->andReturn('php');
+
+		$generator = new ComponentGenerator($file, $config);
+		$generator->make('app/views/navbar.php');
 
 	}
 }

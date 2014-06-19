@@ -23,9 +23,11 @@ return [
 	 * If you dislike blade or use another template engine you can change it here for convenience.
 	 */
 	'postfix' => '.blade.php',
+
 	/* Some templates may make use of PHP or Blade specific syntax.
 	 * If you change your postfix to .php then you should change this to 'php'.
 	 */
-	'syntax' => 'blade',
+	'syntax' => 'php',
+
 ];
 
