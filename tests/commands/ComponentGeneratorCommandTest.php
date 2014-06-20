@@ -59,14 +59,9 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testGeneratesComponentFails()
+	public function testAppendTemplateToExistingFile()
 	{
 		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentGenerator');
-
-		$gen->shouldReceive('make')
-			->once()
-			->with('app/views/components/navbar.blade.php') 
-			->andReturn(false);
 
 		$config = m::mock('ConfigMock');
 		$config
@@ -84,13 +79,32 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.path')
 			->andReturn('app/views/components');
 
+		$gen->shouldReceive('make')
+			->once()
+			->with('app/views/components/navbar.blade.php') 
+			->andReturn(true);
+
 		$command = new ComponentGeneratorCommand($gen, $config);
 
 		$tester = new CommandTester($command);
 		$tester->execute(['name' => 'navbar']);
 
 		$this->assertEquals(
-			"Could not create app/views/components/navbar.blade.php\n",
+			"Created app/views/components/navbar.blade.php\n",
+			$tester->getDisplay()
+		);
+		$gen->shouldReceive('make')
+			->once()
+			->with('app/views/components/navbar.blade.php') 
+			->andReturn(false);
+
+		$command = new ComponentGeneratorCommand($gen, $config);
+
+		$tester = new CommandTester($command);
+		$tester->execute(['name' => 'navbar']);
+
+		$this->assertEquals(
+			"Appended template to app/views/components/navbar.blade.php\n",
 			$tester->getDisplay()
 		);
 

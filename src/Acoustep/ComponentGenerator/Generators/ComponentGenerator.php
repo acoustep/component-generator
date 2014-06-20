@@ -29,6 +29,7 @@ class ComponentGenerator {
 
 		if( ! $this->file->exists($path))
 			return $this->file->put($path, $template);
+		$this->file->append($path, $template);
 		return false;
  	}
 

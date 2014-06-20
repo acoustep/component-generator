@@ -47,7 +47,7 @@ class ComponentGeneratorCommand extends Command {
 		if($this->generator->make($path))
 			$this->info("Created {$path}");
 		else
-			$this->error("Could not create {$path}");
+			$this->info("Appended template to {$path}");
 	}
 
 	public function getPath()
