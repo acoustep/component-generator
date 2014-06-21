@@ -27,7 +27,7 @@ return [
 	/* Some templates may make use of PHP or Blade specific syntax.
 	 * If you change your postfix to .php then you should change this to 'php'.
 	 */
-	'syntax' => 'php',
+	'syntax' => 'blade',
 
 ];
 

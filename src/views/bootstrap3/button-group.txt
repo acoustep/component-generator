@@ -1,0 +1,5 @@
+<div class="btn-group">
+	{{ Form::button('Left', ['type' => 'button', 'class' => 'btn btn-default']) }}
+	{{ Form::button('Middle', ['type' => 'button', 'class' => 'btn btn-default']) }}
+	{{ Form::button('Right', ['type' => 'button', 'class' => 'btn btn-default']) }}
+</div>

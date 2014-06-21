@@ -1,0 +1,21 @@
+{{ Form::open(['class' => '', 'role' => 'form', 'file' => 'true']) }}
+	<div class="form-group">
+		{{ Form::label('exampleInputEmail1', 'Email address') }}
+		{{ Form::email('exampleInputEmail1', '', ['class' => 'form-control', 'placeholder' => 'Enter email']) }}
+	</div>
+	<div class="form-group">
+		{{ Form::label('exampleInputPassword1', 'Password') }}
+		{{ Form::password('exampleInputPassword1', ['class' => 'form-control', 'placeholder' => 'Password']) }}
+	</div>
+	<div class="form-group">
+		{{ Form::label('exampleInputFile', 'File input') }}
+		{{ Form::file('exampleInputFile') }}
+		<p class="help-block">Example block-level help text here.</p>
+	</div>
+	<div class="checkbox">
+		<label>
+			{{ Form::checkbox('', 'true') }} Check me out
+		</label>
+	</div>
+	{{ Form::button('Submit', ['type' => 'submit', 'class' => 'btn btn-default']) }}
+{{ Form::close() }}

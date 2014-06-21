@@ -1,0 +1,1 @@
+<span data-tooltip data-options="disable_for_touch:true" class="has-tip tip-top round" title="Tooltips are awesome, you should totally use them!">extended information</span>

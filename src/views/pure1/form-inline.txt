@@ -1,0 +1,14 @@
+{{ Form::open(['class' => 'pure-form']) }}
+	<fieldset>
+		<legend>A compact inline form</legend>
+
+		{{ Form::email('email', '', ['placeholder' => 'Email']) }}
+		{{ Form::password('password', ['placeholder' => 'Password']) }}
+
+		<label for="remember">
+			{{ Form::checkbox('remember') }} Remember me
+		</label>
+
+		{{ Form::button('Sign in', ['type' => 'submit', 'class' => 'pure-button pure-button-primary']) }}
+	</fieldset>
+{{ Form::close() }}

@@ -1,0 +1,26 @@
+<form class="pure-form pure-form-aligned">
+	<fieldset>
+		<div class="pure-control-group">
+			{{ Form::label('name', 'Username') }}
+			{{ Form::text('name', '', ['placeholder' => 'Username']) }}
+		</div>
+
+		<div class="pure-control-group">
+			{{ Form::label('password') }}
+			{{ Form::password('password', '', ['placeholder' => 'Password']) }}
+		</div>
+
+		<div class="pure-control-group">
+			{{ Form::label('email') }}
+			{{ Form::email('email', '', ['placeholder' => 'Email Address']) }}
+		</div>
+
+		<div class="pure-controls">
+			<label for="cb" class="pure-checkbox">
+				{{ Form::checkbox('remember') }} I've read the terms and conditions
+			</label>
+
+			{{ Form::button('Submit', ['type' => 'submit', 'class' => 'pure-button pure-button-primary']) }}
+		</div>
+	</fieldset>
+</form>

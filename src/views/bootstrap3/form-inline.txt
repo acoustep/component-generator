@@ -1,0 +1,16 @@
+{{ Form::open(['class' => 'form-inline', 'role' => 'form']) }}
+	<div class="form-group">
+		{{ Form::label('exampleInputEmail2', 'Email address', ['class' => 'sr-only']) }}
+		{{ Form::email('exampleInputEmail2', '', ['class' => 'form-control', 'placeholder' => 'Enter email']) }}
+	</div>
+	<div class="form-group">
+		{{ Form::label('exampleInputPassword2', 'Password', ['class' => 'sr-only']) }}
+		{{ Form::password('exampleInputPassword2', ['class' => 'form-control', 'placeholder' => 'Password']) }}
+	</div>
+	<div class="checkbox">
+		<label>
+		{{ Form::checkbox('', 'true') }} Remember me
+		</label>
+	</div>
+	{{ Form::button('Submit', ['type' => 'submit', 'class' => 'btn btn-default']) }}
+{{ Form::close() }}

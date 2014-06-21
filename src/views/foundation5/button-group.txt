@@ -1,0 +1,5 @@
+<ul class="button-group round">
+	<li><a href="#" class="button secondary">Button 1</a></li>
+	<li><a href="#" class="button alert ">Button 2</a></li>
+	<li><a href="#" class="button success">Button 3</a></li>
+</ul>

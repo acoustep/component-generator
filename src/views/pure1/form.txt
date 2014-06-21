@@ -1,0 +1,24 @@
+{{ Form::open(['class' => 'pure-form pure-form-stacked']) }}
+	<fieldset>
+	<legend>A Stacked Form</legend>
+
+	{{ Form::label('email') }}
+	{{ Form::email('email', '', ['placeholder' => 'Email']) }}
+
+	{{ Form::label('password') }}
+	{{ Form::password('password', ['placeholder' => 'Password']) }}
+
+	{{ Form::label('state') }}
+	<select id="state">
+	<option>AL</option>
+	<option>CA</option>
+	<option>IL</option>
+	</select>
+
+	<label for="remember" class="pure-checkbox">
+		{{ Form::checkbox('remember') }} Remember me
+	</label>
+
+		{{ Form::button('Sign in', ['type' => 'submit', 'class' => 'pure-button pure-button-primary']) }}
+	</fieldset>
+{{ Form::close() }}

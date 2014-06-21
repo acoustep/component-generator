@@ -1,0 +1,25 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+	<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Foundation Template | Blog</title>
+	<meta name="description" content="Documentation and reference library for ZURB Foundation. JavaScript, CSS, components, grid and more."/>
+	<meta name="author" content="ZURB, inc. ZURB network also includes zurb.com"/>
+	<meta name="copyright" content="ZURB, inc. Copyright (c) 2013"/>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.css"/>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+	</head>
+	<body>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
+	<script>
+	$(document).foundation();
+
+	var doc = document.documentElement;
+	doc.setAttribute('data-useragent', navigator.userAgent);
+	</script>
+	</body>
+</html>

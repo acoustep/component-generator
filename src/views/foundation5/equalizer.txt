@@ -1,0 +1,13 @@
+<div class="row" data-equalizer>
+	<div class="large-6 columns">
+		<ul class="pricing-table" data-equalizer-watch>
+			...
+			<li class="cta-button"><a class="button" href="#">Buy Now</a></li>
+		</ul>    
+	</div>
+	<div class="large-6 columns">
+		<ul class="pricing-table" data-equalizer-watch>
+			...
+		<li class="cta-button"><a class="button" href="#">Buy Now</a></li>
+	</ul>    
+</div>
