@@ -35,12 +35,12 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 		$this->registerComponentGeneratorCommand();
 
 		$this->commands(
-			'generate.component'
+			'component.generate'
 		);
 	}
 	public function registerComponentGeneratorCommand()
 	{
-		$this->app['generate.component'] = $this->app->share(function($app)
+		$this->app['component.generate'] = $this->app->share(function($app)
 		{
 			$generator = new ComponentGenerator($app['files'], $app['config']);
 			return new ComponentGeneratorCommand($generator, $app['config']);

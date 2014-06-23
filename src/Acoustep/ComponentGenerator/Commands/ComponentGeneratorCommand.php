@@ -12,7 +12,7 @@ class ComponentGeneratorCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'generate:component';
+	protected $name = 'component:generate';
 
 	/**
 	 * The console command description.
