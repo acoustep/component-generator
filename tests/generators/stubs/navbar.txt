@@ -31,7 +31,7 @@
 			</ul>
 			{{ Form::open(['class' => 'navbar-form navbar-left', 'role' => 'search']) }}
 				<div class="form-group">
-					{{ Input::text('search', '', ['class' => 'form-control']) }}
+					{{ Form::text('search', '', ['class' => 'form-control']) }}
 				</div>
 				{{ Form::button('Submit', ['type' => 'submit', 'class' => 'btn btn-default']) }}
 			{{ Form::close() }}
