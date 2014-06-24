@@ -221,46 +221,5 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 		$generator->make('app/views/navbar.php');
 
 	}
-
-	public function testCanAppendTemplateToFile()
-	{
-		$config = m::mock('ConfigMock');
-
-		$config->shouldReceive('get')
-			->with('component-generator::config.postfix')
-			->andReturn('.blade.php');
-
-		$config->shouldReceive('get')
-			->with('component-generator::config.framework')
-			->andReturn('bootstrap3');
-
-		$config->shouldReceive('get')
-			->with('component-generator::config.prefix')
-			->andReturn('');
-
-		$config->shouldReceive('get')
-			->with('component-generator::config.syntax')
-			->andReturn('blade');
-
-		$file = m::mock('Illuminate\Filesystem\Filesystem[exists,append]');
-
-		$file->shouldReceive('exists')
-			->with('app/views/components/navbar.blade.php')
-			->andReturn(true);
-		$file->shouldReceive('append')
-			->once()
-			->with(
-				'app/views/components/navbar.blade.php', 
-				file_get_contents(__DIR__.'/stubs/navbar.txt'
-			));
-
-		$generator = new ComponentGenerator($file, $config);
-			$result = $generator->make('app/views/components/navbar.blade.php');
-		$this->assertEquals(
-			false,
-			$result
-		);
-
-	}
 }
 

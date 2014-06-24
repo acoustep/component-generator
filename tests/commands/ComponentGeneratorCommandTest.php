@@ -59,57 +59,6 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testAppendTemplateToExistingFile()
-	{
-		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentGenerator');
-
-		$config = m::mock('ConfigMock');
-		$config
-			->shouldReceive('get')
-			->with('component-generator::config.prefix')
-			->andReturn('');
-
-		$config
-			->shouldReceive('get')
-			->with('component-generator::config.postfix')
-			->andReturn('.blade.php');
-
-		$config
-			->shouldReceive('get')
-			->with('component-generator::config.path')
-			->andReturn('app/views/components');
-
-		$gen->shouldReceive('make')
-			->once()
-			->with('app/views/components/navbar.blade.php') 
-			->andReturn(true);
-
-		$command = new ComponentGeneratorCommand($gen, $config);
-
-		$tester = new CommandTester($command);
-		$tester->execute(['name' => 'navbar']);
-
-		$this->assertEquals(
-			"Created app/views/components/navbar.blade.php\n",
-			$tester->getDisplay()
-		);
-		$gen->shouldReceive('make')
-			->once()
-			->with('app/views/components/navbar.blade.php') 
-			->andReturn(false);
-
-		$command = new ComponentGeneratorCommand($gen, $config);
-
-		$tester = new CommandTester($command);
-		$tester->execute(['name' => 'navbar']);
-
-		$this->assertEquals(
-			"Appended template to app/views/components/navbar.blade.php\n",
-			$tester->getDisplay()
-		);
-
-	}
-
 	public function testCommandLinePathOptionOverridesConfiguration()
 	{
 		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentGenerator');
