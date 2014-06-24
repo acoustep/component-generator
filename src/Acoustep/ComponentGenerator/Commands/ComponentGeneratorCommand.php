@@ -19,7 +19,7 @@ class ComponentGeneratorCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Generate a HTML component from a web framework such as Twitter Bootstrap or Zurb Foundation.';
+	protected $description = 'Generate a HTML component from Twitter Bootstrap or other frameworks.';
 
 	protected $generator;
 	protected $config;
@@ -47,7 +47,7 @@ class ComponentGeneratorCommand extends Command {
 		if($this->generator->make($path))
 			$this->info("Created {$path}");
 		else
-			$this->info("Appended template to {$path}");
+			$this->error("Could not generate template {$path} because it already exists. Did you mean component:append?");
 	}
 
 	public function getPath()

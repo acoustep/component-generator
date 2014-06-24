@@ -2,7 +2,7 @@
 
 use Illuminate\Filesystem\Filesystem as File;
 
-class ComponentGenerator {
+class ComponentAppender {
 	protected $file;
 	protected $config;
 
@@ -11,34 +11,34 @@ class ComponentGenerator {
 		$this->file = $file;
 		$this->config = $config;
 	}
-	public function make($path)
+
+	public function make($name, $file)
 	{ 
-		$name = basename(
-			$path, 
-			$this->config->get('component-generator::config.postfix'
-		));
 
 		$template = $this->getTemplate($name);
-
-		$path_parts = pathinfo($path);
-
-		$path = $path_parts['dirname'] .
-			'/' .
-			$this->config->get('component-generator::config.prefix') .
-			$path_parts['basename'];
-
-		if( ! $this->file->exists($path))
-			return $this->file->put($path, $template);
+		
+		if($file = $this->getFile($file))
+			return $this->file->append($file, $template);
 		return false;
  	}
 
+	public function getFile($file)
+	{
+		// If dot notation is used convert it to forward slash
+		$file = str_replace(".", "/", $file);
+
+		if($this->file->exists($file.".blade.php"))
+			return $file.".blade.php";
+
+		if($this->file->exists($file.".php"))
+			return $file.".php";
+
+		return false;
+
+	}
+
 	public function getTemplate($name)
 	{
-		$name = basename(
-			$name, 
-			$this->config->get('component-generator::config.postfix'
-		));
-
 		$template = $this->file->get(
 			__DIR__ . 
 			'/../../../views/' . 
@@ -56,4 +56,5 @@ class ComponentGenerator {
 		return $template;
 	}
 }
+
 

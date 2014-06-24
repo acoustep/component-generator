@@ -4,6 +4,8 @@ use Config;
 use Illuminate\Support\ServiceProvider;
 use Acoustep\ComponentGenerator\Commands\ComponentGeneratorCommand;
 use Acoustep\ComponentGenerator\Generators\ComponentGenerator;
+use Acoustep\ComponentGenerator\Commands\ComponentAppenderCommand;
+use Acoustep\ComponentGenerator\Generators\ComponentAppender;
 
 class ComponentGeneratorServiceProvider extends ServiceProvider {
 
@@ -35,7 +37,8 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 		$this->registerComponentGeneratorCommand();
 
 		$this->commands(
-			'component.generate'
+			'component.generate',
+			'component.append'
 		);
 	}
 	public function registerComponentGeneratorCommand()
@@ -44,6 +47,11 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 		{
 			$generator = new ComponentGenerator($app['files'], $app['config']);
 			return new ComponentGeneratorCommand($generator, $app['config']);
+		});
+		$this->app['component.append'] = $this->app->share(function($app)
+		{
+			$generator = new ComponentAppender($app['files'], $app['config']);
+			return new ComponentAppenderCommand($generator, $app['config']);
 		});
 	}
 
