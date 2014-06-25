@@ -149,6 +149,11 @@ Don't use blade? You can change to normal PHP templates with the following setti
 * pagination
 * table
 
+## To do
+
+* A setup command which creates the directory components are generated to.
+* Ability to publish views for customising before generation.
+
 ## Credits
 
 The base of this code is from Jeffrey Way's Book [Laravel Testing Decoded](https://leanpub.com/laravel-testing-decoded).  A great book which has helped me a lot!
