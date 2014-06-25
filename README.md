@@ -1,6 +1,6 @@
 # Component Generator
 
-Inspired by [Bourbon Refill's](http://refills.bourbon.io/) Rails generators, Component generator is a Laravel 4 plugin to quickly to generate HTML components from Web Frameworks such as Twitter Bootstrap via command line.
+Inspired by [Bourbon Refill's](http://refills.bourbon.io/) Rails generators, Component Generator is a Laravel 4 plugin to quickly to generate HTML components from Web Frameworks such as Twitter Bootstrap via command line.
 
 ## Installation
 
