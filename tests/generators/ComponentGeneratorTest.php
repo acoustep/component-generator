@@ -9,7 +9,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 		m::close();
 	}
 
-	public function testCanGenerateNavbarComponent()
+	/**
+	 * @test
+	 */
+	public function can_generate_navbar_component()
 	{
 		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
 
@@ -49,7 +52,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testPrefixConfigurationAltersFilePrefix()
+	/**
+	 * @test
+	 */
+	public function prefix_configuration_alters_file_prefix()
 	{
 		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
 
@@ -84,7 +90,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 		$generator->make('app/views/components/navbar.blade.php');
 	}
 
-	public function testPostfixConfigurationAltersFilePostfix()
+	/**
+	 * @test
+	 */
+	public function postfix_configuration_alters_file_postfix()
 	{
 		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
 
@@ -119,7 +128,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 		$generator->make('app/views/components/navbar.php');
 	}
 
-	public function testCanGenerateFoundationTopbarComponent()
+	/**
+	 * @test
+	 */
+	public function can_generate_foundation_topbar_component()
 	{
 		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
 
@@ -155,7 +167,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testCanChangeGeneratedFilePathViaGenerator()
+	/**
+	 * @test
+	 */
+	public function can_change_generated_file_path_via_generator()
 	{
 		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
 
@@ -188,7 +203,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testCanSyntaxToPHP()
+	/**
+	 * @test
+	 */
+	public function can_change_syntax_to_php()
 	{
 		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
 
@@ -222,4 +240,3 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 
 	}
 }
-

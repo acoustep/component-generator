@@ -22,7 +22,10 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 		m::close();
 	}
 
-	public function testGeneratesComponentSuccessfully()
+	/**
+	 * @test
+	 */
+	public function generates_component_successfully()
 	{
 		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentGenerator');
 
@@ -59,7 +62,10 @@ class ComponentGeneratorCommandTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testCommandLinePathOptionOverridesConfiguration()
+	/**
+	 * @test
+	 */
+	public function command_line_path_option_overrides_configuration()
 	{
 		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentGenerator');
 

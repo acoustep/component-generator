@@ -9,7 +9,10 @@ class ComponentAppenderTest extends PHPUnit_Framework_TestCase {
 		m::close();
 	}
 
-	public function testCanAppendTemplateToFile()
+	/**
+	 * @test
+	 */
+	public function can_append_template_to_file()
 	{
 		$config = m::mock('ConfigMock');
 
@@ -43,7 +46,10 @@ class ComponentAppenderTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testCantAppendtoNewFile()
+	/**
+	 * @test
+	 */
+	public function cant_append_to_new_file()
 	{
 		$config = m::mock('ConfigMock');
 
@@ -74,7 +80,10 @@ class ComponentAppenderTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testCanAppendtoPHPFile()
+	/**
+	 * @test
+	 */
+	public function _can_append_to_php_file()
 	{
 		$config = m::mock('ConfigMock');
 

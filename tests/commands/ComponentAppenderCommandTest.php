@@ -22,7 +22,10 @@ class ComponentAppenderCommandTest extends PHPUnit_Framework_TestCase {
 		m::close();
 	}
 
-	public function testAppendTemplateToExistingFile()
+	/**
+	 * @test
+	 */
+	public function append_template_to_existing_file()
 	{
 		$gen = m::mock('Acoustep\ComponentGenerator\Generators\ComponentAppender');
 
