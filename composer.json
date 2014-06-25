@@ -1,5 +1,6 @@
 {
     "name": "acoustep/component-generator",
+		"license": "MIT",
     "description": "",
     "authors": [
         {
