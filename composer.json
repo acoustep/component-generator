@@ -2,6 +2,7 @@
     "name": "acoustep/component-generator",
 		"license": "MIT",
     "description": "",
+		"keywords": ["laravel", "generator", "bootstrap", "foundation", "component generator"],
     "authors": [
         {
             "name": "Mitch Stanley",
