@@ -4,24 +4,6 @@
 
 Inspired by [Bourbon Refill's](http://refills.bourbon.io/) Rails generators, Component Generator is a Laravel 4 package to quickly to generate HTML components from Web Frameworks such as Twitter Bootstrap via command line.
 
-## Installation
-
-```
-"acoustep/component-generator": "dev-master"
-```
-
-Add the service provider
-
-```
-'Acoustep\ComponentGenerator\ComponentGeneratorServiceProvider',
-```
-
-If you wish to change your settings you can run
-
-```
-php artisan config:publish acoustep/component-generator
-```
-
 ## Getting Started
 
 By default running the following command will create a new file in views/components/navbar.blade.php with the Twitter Bootstrap navigation bar.
@@ -43,6 +25,24 @@ php artisan component:append navbar layouts.default
 ```
 
 The first argument is the component. The second argument is the template to append to - located inside of app/views.
+
+## Installation
+
+```
+"acoustep/component-generator": "dev-master"
+```
+
+Add the service provider
+
+```
+'Acoustep\ComponentGenerator\ComponentGeneratorServiceProvider',
+```
+
+If you wish to change your settings you can run
+
+```
+php artisan config:publish acoustep/component-generator
+```
 
 ## Configuration
 
