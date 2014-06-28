@@ -58,7 +58,7 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 		});
 		$this->app['component.setup'] = $this->app->share(function($app)
 		{
-			$generator = new ComponentSetup($app['files'], $app['config']);
+			$generator = new ComponentSetup($app['files'], $app['config'], app_path(), '/config/packages/acoustep/component-generator');
 			return new ComponentSetupCommand($generator, $app['config']);
 		});
 	}

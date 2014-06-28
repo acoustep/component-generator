@@ -5,13 +5,17 @@ use Illuminate\Filesystem\Filesystem as File;
 class ComponentSetup {
 	protected $file;
 	protected $config;
+	protected $published_config_directory;
 	protected $published_config_location;
+	protected $app_path;
 
-	public function __construct(File $file, $config)
+	public function __construct(File $file, $config, $app_path, $published_config_directory)
 	{
 		$this->file = $file;
 		$this->config = $config;
-		$this->published_config_location = app_path().'/config/packages/acoustep/component-generator/config.php'; 
+		$this->app_path = $app_path;
+		$this->published_config_directory = $this->app_path.$published_config_directory; 
+		$this->published_config_location = $this->published_config_directory.'/config.php';
 	}
 
 	public function make($syntax, $location, $framework)
@@ -40,13 +44,15 @@ class ComponentSetup {
 
 	public function publishConfigFile()
 	{
-		$directories = ['packages', 'acoustep', 'component-generator'];
-		$parent = '';
-		foreach($directories as $directory) {
-			if( ! $this->file->isDirectory(app_path().'/config/'.$parent.$directory))
-				$this->file->makeDirectory(app_path().'/config/'.$parent.$directory);
-			$parent .= $directory.'/';
-		}
+		// $directories = ['packages', 'acoustep', 'component-generator'];
+		// $parent = '';
+		// foreach($directories as $directory) {
+		// 	if( ! $this->file->isDirectory($this->app_path.'/config/'.$parent.$directory))
+		// 		$this->file->makeDirectory($this->app_path.'/config/'.$parent.$directory);
+		// 	$parent .= $directory.'/';
+		// }
+		if( ! $this->file->isDirectory($this->published_config_directory))
+			$this->file->makeDirectory($this->published_config_directory, 0777, true);
 		
 		return $this->file->copy(__DIR__.'/../../../config/config.php', $this->published_config_location);
 		
