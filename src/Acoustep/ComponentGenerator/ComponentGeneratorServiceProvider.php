@@ -6,6 +6,8 @@ use Acoustep\ComponentGenerator\Commands\ComponentGeneratorCommand;
 use Acoustep\ComponentGenerator\Generators\ComponentGenerator;
 use Acoustep\ComponentGenerator\Commands\ComponentAppenderCommand;
 use Acoustep\ComponentGenerator\Generators\ComponentAppender;
+use Acoustep\ComponentGenerator\Commands\ComponentSetupCommand;
+use Acoustep\ComponentGenerator\Generators\ComponentSetup;
 
 class ComponentGeneratorServiceProvider extends ServiceProvider {
 
@@ -38,7 +40,8 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 
 		$this->commands(
 			'component.generate',
-			'component.append'
+			'component.append',
+			'component.setup'
 		);
 	}
 	public function registerComponentGeneratorCommand()
@@ -52,6 +55,11 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 		{
 			$generator = new ComponentAppender($app['files'], $app['config']);
 			return new ComponentAppenderCommand($generator, $app['config']);
+		});
+		$this->app['component.setup'] = $this->app->share(function($app)
+		{
+			$generator = new ComponentSetup($app['files'], $app['config']);
+			return new ComponentSetupCommand($generator, $app['config']);
 		});
 	}
 
