@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/acoustep/component-generator.svg?branch=master)](https://travis-ci.org/acoustep/component-generator)
 
-Inspired by [Bourbon Refill's](http://refills.bourbon.io/) Rails generators, Component Generator is a Laravel 4 package to quickly to generate HTML components from Web Frameworks such as Twitter Bootstrap via command line.
+Inspired by [Bourbon Refill's](http://refills.bourbon.io/) Rails generators, Component Generator is a Laravel 4 package to quickly generate HTML components from Web Frameworks such as Twitter Bootstrap via command line.
 
 ## Getting Started
 
