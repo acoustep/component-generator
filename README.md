@@ -9,7 +9,7 @@ Inspired by [Bourbon Refill's](http://refills.bourbon.io/) Rails generators, Com
 By default running the following command will create a new file in views/components/navbar.blade.php with the Twitter Bootstrap navigation bar.
 
 ```
-php artisan componenet:generate navbar
+php artisan component:generate navbar
 ```
 
 If you want to change the directory the file is created in your can use the --path option
@@ -42,6 +42,12 @@ If you wish to change your settings you can run
 
 ```
 php artisan config:publish acoustep/component-generator
+```
+
+Or
+
+```
+php artisan component:setup
 ```
 
 ## Configuration
@@ -153,7 +159,7 @@ Don't use blade? You can change to normal PHP templates with the following setti
 
 ## To do
 
-* A setup command which creates the directory components are generated to.
+* A command that lists the components that are available.
 * Ability to publish views for customising before generation.
 
 ## Credits

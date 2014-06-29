@@ -115,8 +115,10 @@ class ComponentSetupTest extends PHPUnit_Framework_TestCase {
 			->andReturn(true);
 
 		$file->shouldReceive('copy')
-			->with("/var/www/laravel.dev/workbench/acoustep/component-generator/src/Acoustep/ComponentGenerator/Generators/../../../config/config.php", __DIR__.'/stubs/config.php')
-			->andReturn(true);
+			->with(
+				"/var/www/laravel.dev/workbench/acoustep/component-generator/src/Acoustep/ComponentGenerator/Generators/../../../config/config.php", 
+				__DIR__.'/stubs/config.php'
+			)->andReturn(true);
 
 		$file->shouldReceive('put')
 			->once()
