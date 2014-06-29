@@ -5,11 +5,13 @@ use Illuminate\Filesystem\Filesystem as File;
 class ComponentGenerator {
 	protected $file;
 	protected $config;
+	protected $app_path;
 
-	public function __construct(File $file, $config)
+	public function __construct(File $file, $config, $app_path)
 	{
 		$this->file = $file;
 		$this->config = $config;
+		$this->app_path = $app_path;
 	}
 	public function make($path)
 	{ 
@@ -26,6 +28,9 @@ class ComponentGenerator {
 			'/' .
 			$this->config->get('component-generator::config.prefix') .
 			$path_parts['basename'];
+
+		if( ! $this->file->isDirectory($this->app_path.'/../'.$path_parts['dirname']))
+			$this->file->makeDirectory($this->app_path.'/../'.$path_parts['dirname']);
 
 		if( ! $this->file->exists($path))
 			return $this->file->put($path, $template);

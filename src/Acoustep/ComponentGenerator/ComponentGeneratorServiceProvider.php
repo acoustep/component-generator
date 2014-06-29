@@ -48,7 +48,7 @@ class ComponentGeneratorServiceProvider extends ServiceProvider {
 	{
 		$this->app['component.generate'] = $this->app->share(function($app)
 		{
-			$generator = new ComponentGenerator($app['files'], $app['config']);
+			$generator = new ComponentGenerator($app['files'], $app['config'], app_path());
 			return new ComponentGeneratorCommand($generator, $app['config']);
 		});
 		$this->app['component.append'] = $this->app->share(function($app)

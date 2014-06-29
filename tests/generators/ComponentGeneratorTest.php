@@ -14,7 +14,11 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function can_generate_navbar_component()
 	{
-		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+		$file = m::mock('Illuminate\Filesystem\Filesystem[isDirectory,makeDirectory,put]');
+
+		$file->shouldReceive('isDirectory')
+			->once()
+			->andReturn(true);
 
 		$file->shouldReceive('put')
 			->once()
@@ -42,7 +46,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.syntax')
 			->andReturn('blade');
 
-		$generator = new ComponentGenerator($file, $config);
+		$generator = new ComponentGenerator($file, $config, __DIR__);
 			$result = $generator->make('app/views/components/navbar.blade.php');
 
 		$this->assertEquals(
@@ -57,7 +61,11 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function prefix_configuration_alters_file_prefix()
 	{
-		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put,isDirectory,makeDirectory]');
+
+		$file->shouldReceive('isDirectory')
+			->once()
+			->andReturn(true);
 
 		$file->shouldReceive('put')
 			->once()
@@ -86,7 +94,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.syntax')
 			->andReturn('blade');
 
-		$generator = new ComponentGenerator($file, $config);
+		$generator = new ComponentGenerator($file, $config, __DIR__);
 		$generator->make('app/views/components/navbar.blade.php');
 	}
 
@@ -95,7 +103,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function postfix_configuration_alters_file_postfix()
 	{
-		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put,isDirectory,makeDirectory]');
 
 		$file->shouldReceive('put')
 			->once()
@@ -103,6 +111,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 				'app/views/components/navbar.php', 
 				file_get_contents(__DIR__.'/stubs/navbar.txt'
 			));
+
+		$file->shouldReceive('isDirectory')
+			->once()
+			->andReturn(true);
 
 		$config = m::mock('ConfigMock');
 
@@ -124,7 +136,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.syntax')
 			->andReturn('blade');
 
-		$generator = new ComponentGenerator($file, $config);
+		$generator = new ComponentGenerator($file, $config, __DIR__);
 		$generator->make('app/views/components/navbar.php');
 	}
 
@@ -133,7 +145,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function can_generate_foundation_topbar_component()
 	{
-		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put,isDirectory,makeDirectory]');
 
 		$file->shouldReceive('put')
 			->once()
@@ -141,6 +153,10 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 				'app/views/components/topbar.blade.php', 
 				file_get_contents(__DIR__.'/stubs/topbar.txt'
 			));
+
+		$file->shouldReceive('isDirectory')
+			->once()
+			->andReturn(true);
 
 		$config = m::mock('ConfigMock');
 
@@ -162,7 +178,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.syntax')
 			->andReturn('blade');
 
-		$generator = new ComponentGenerator($file, $config);
+		$generator = new ComponentGenerator($file, $config, __DIR__);
 		$generator->make('app/views/components/topbar.blade.php');
 
 	}
@@ -172,11 +188,15 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function can_change_generated_file_path_via_generator()
 	{
-		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put,isDirectory,makeDirectory]');
 
 		$file->shouldReceive('put')
 			->once()
 			->with('app/views/navbar.blade.php', file_get_contents(__DIR__.'/stubs/navbar.txt'));
+
+		$file->shouldReceive('isDirectory')
+			->once()
+			->andReturn(true);
 
 		$config = m::mock('ConfigMock');
 
@@ -198,7 +218,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->with('component-generator::config.syntax')
 			->andReturn('blade');
 
-		$generator = new ComponentGenerator($file, $config);
+		$generator = new ComponentGenerator($file, $config, __DIR__);
 		$generator->make('app/views/navbar.blade.php');
 
 	}
@@ -208,11 +228,15 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function can_change_syntax_to_php()
 	{
-		$file = m::mock('Illuminate\Filesystem\Filesystem[put]');
+		$file = m::mock('Illuminate\Filesystem\Filesystem[put,isDirectory,makeDirectory]');
 
 		$file->shouldReceive('put')
 			->once()
 			->with('app/views/navbar.php', file_get_contents(__DIR__.'/stubs/navbar-php.txt'));
+
+		$file->shouldReceive('isDirectory')
+			->once()
+			->andReturn(true);
 
 		$config = m::mock('ConfigMock');
 
@@ -235,7 +259,7 @@ class ComponentGeneratorTest extends PHPUnit_Framework_TestCase {
 			->once()
 			->andReturn('php');
 
-		$generator = new ComponentGenerator($file, $config);
+		$generator = new ComponentGenerator($file, $config, __DIR__);
 		$generator->make('app/views/navbar.php');
 
 	}
