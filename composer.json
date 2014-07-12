@@ -1,7 +1,7 @@
 {
     "name": "acoustep/component-generator",
 		"license": "MIT",
-    "description": "",
+    "description": "Laravel 4 package for generating HTML components from Web Frameworks such as Twitter Bootstrap via command line.",
 		"keywords": ["laravel", "generator", "bootstrap", "foundation", "component generator"],
     "authors": [
         {
