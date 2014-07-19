@@ -84,13 +84,13 @@ Don't use blade? You can change to normal PHP templates with the following setti
 
 ## Components
 
-To list all the components via command line use.
+To list all the components via command line use
 
 ```
 php artisan component:list
 ```
 
-To view a specific framework's componenets pass in the framework option.
+To view a specific framework's componenets pass in the framework option
 
 ```
 php artisan component:list --framework=bootstrap3
