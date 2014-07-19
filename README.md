@@ -84,6 +84,18 @@ Don't use blade? You can change to normal PHP templates with the following setti
 
 ## Components
 
+To list all the components via command line use.
+
+```
+php artisan component:list
+```
+
+To view a specific framework's componenets pass in the framework option.
+
+```
+php artisan component:list --framework=bootstrap3
+```
+
 ### Twitter Bootstrap
 
 * [alerts](http://getbootstrap.com/components/#alerts)
@@ -159,7 +171,6 @@ Don't use blade? You can change to normal PHP templates with the following setti
 
 ## To do
 
-* A command that lists the components that are available.
 * Ability to publish views for customising before generation.
 
 ## Credits
